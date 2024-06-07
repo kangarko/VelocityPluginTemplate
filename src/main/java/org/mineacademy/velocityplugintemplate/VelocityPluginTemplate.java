@@ -23,6 +23,8 @@ import com.velocitypowered.api.proxy.ProxyServer;
 		authors = { "kangarko" })
 public final class VelocityPluginTemplate {
 
+	private static VelocityPluginTemplate instance;
+
 	private final ProxyServer server;
 	private final Logger logger;
 	private final File dataFolder;
@@ -31,6 +33,8 @@ public final class VelocityPluginTemplate {
 
 	@Inject
 	public VelocityPluginTemplate(ProxyServer server, Logger logger, @DataDirectory Path dataFolder) {
+		instance = this;
+
 		this.server = server;
 		this.logger = logger;
 		this.dataFolder = new File(dataFolder.toFile().getParentFile(), this.getClass().getAnnotation(Plugin.class).name());
@@ -67,5 +71,9 @@ public final class VelocityPluginTemplate {
 
 	public void onDisable() {
 		System.out.println(this.name + " disabled");
+	}
+
+	public static VelocityPluginTemplate getInstance() {
+		return instance;
 	}
 }
