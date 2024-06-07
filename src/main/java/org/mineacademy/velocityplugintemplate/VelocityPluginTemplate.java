@@ -73,6 +73,26 @@ public final class VelocityPluginTemplate {
 		System.out.println(this.name + " disabled");
 	}
 
+	public ProxyServer getServer() {
+		return server;
+	}
+
+	public Logger getLogger() {
+		return logger;
+	}
+
+	public File getDataFolder() {
+		return dataFolder;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 	public static VelocityPluginTemplate getInstance() {
 		return instance;
 	}
