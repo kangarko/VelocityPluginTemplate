@@ -27,6 +27,7 @@ public final class VelocityPluginTemplate {
 	private final Logger logger;
 	private final File dataFolder;
 	private final File file;
+	private final String name;
 
 	@Inject
 	public VelocityPluginTemplate(ProxyServer server, Logger logger, @DataDirectory Path dataFolder) {
@@ -40,6 +41,8 @@ public final class VelocityPluginTemplate {
 		} catch (final URISyntaxException ex) {
 			throw new RuntimeException(ex);
 		}
+
+		this.name = this.getClass().getAnnotation(Plugin.class).name();
 
 		this.onLoad();
 	}
@@ -55,14 +58,14 @@ public final class VelocityPluginTemplate {
 	}
 
 	public void onLoad() {
-		System.out.println("VelocityPluginTemplate loaded.");
+		System.out.println(this.name + " loaded.");
 	}
 
 	public void onEnable() {
-		System.out.println("VelocityPluginTemplate enabled");
+		System.out.println(this.name + " enabled");
 	}
 
 	public void onDisable() {
-		System.out.println("VelocityPluginTemplate disabled");
+		System.out.println(this.name + " disabled");
 	}
 }
